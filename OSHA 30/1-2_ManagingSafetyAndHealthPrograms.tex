@@ -1,0 +1,992 @@
+% ============================================================================
+% Accessibility
+% ============================================================================
+\DocumentMetadata{
+  lang = en-US, 
+  pdfstandard = ua-2, 
+  tagging = on, 
+  tagging-setup = {math/setup=mathml-SE}
+}
+
+% ============================================================================
+% Document Properties - used on title slide and PDF metadata fields
+% ============================================================================
+\def\PresTitle{Managing Safety and Health Programs}     % Required - top line of title slide
+\def\PresSubtitle{Baker College Engineering}            % Optional - second line
+\def\PresAuthor{Brad Peirson}                           % Required - below dividing line
+\def\PresInstitute{College of Information Technology and Engineering}       % Optional
+\def\PresDate{}                                         % Optional
+\def\PresKeywords{}                                     % Optional - used for hyperref
+
+% Presentation Formatting
+% ============================================================================
+\input{../ltxtalk_preamble.tex}
+
+% ============================================================================
+% Document Content
+% ============================================================================
+\begin{document}
+
+\maketitle              % Redefined in the preamble to generate a full frame
+
+\begin{frame}
+    \frametitle{Agenda}
+    \begingroup
+        % Tighten the spacing between paragraphs/TOC lines
+        \setlength{\parskip}{0.3em} 
+        
+        % Optionally tighten the line spacing within an entry
+        %\baselineskip=1.2em 
+        
+        \setcounter{tocdepth}{1} % Show only sections
+    \tableofcontents
+    \setcounter{tocdepth}{2} % Reset back to default so subsections are tracked
+    \endgroup
+\end{frame}
+
+\begin{frame}
+    \frametitle{Objectives}
+    \begin{enumerate}[<+- | alert@+>]
+        \item Recognize the cost of workplace accidents
+        \item Recognize the benefits of implementing an effective safety and health program
+        \item Describe the elements of an effective safety and health program
+        \item Identify three methods to prevent workplace hazards
+    \end{enumerate}
+\end{frame}
+
+% \begin{frame}
+%     \frametitle{Opening Video}
+%     \begin{center}
+%         \href{https://www.yout-ube.com/watch?v=k84-iy5yTFE}{OSHA FAIL 2020 | Compilation of funny workplace fail videos \cite{WorkplaceFails}}
+
+%         \scriptsize{\href{https://www.yout-ube.com/watch?v=k84-iy5yTFE}{https://www.yout-ube.com/watch?v=k84-iy5yTFE}}
+%     \end{center}    
+% \end{frame}
+
+\section{Introduction}
+
+% Old data from OSHA presentation - 2015
+% \begin{frame}
+%     \frametitle{Fatal Occupation Injuries}
+
+%     \shadowpic[]{0.5\linewidth}{Horizontal bar chart titled "Fatal occupational injuries by major event, 2015" showing a total of 4,836 fatal work injuries. The major event categories from top to bottom are: Transportation incidents (2,054 total, breakdown showing Roadway incidents at 1,264 and remaining at 790), Falls, slips, trips (800 total, breakdown showing Falls to lower level at 648 and remaining at 152), Contact with objects and equipment (722), Violence and other injuries by persons or animals (703 total, breakdown showing Homicides at 417 and remaining at 286), Exposure to harmful substances or environments (424), and Fires and explosions (121). A note at the bottom highlights that more fatal work injuries resulted from transportation incidents than any other event in 2015, with roadway incidents alone accounting for about one out of every four fatal work injuries. Source: U.S. Bureau of Labor Statistics, 2016.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{FatalInjuries}
+% \end{frame}
+
+\begin{frame}
+    \frametitle{Fatal Occupational Injuries}
+
+    \begin{figure}
+        \centering
+        \resizebox{0.75\linewidth}{!}{
+            \input{../assets/plots/FatalInjuries_2024.tex}
+        }
+
+        {\tiny \textbf{Source:} U.S. Bureau of Labor Statistics}
+    \end{figure}
+    
+\end{frame}
+
+\begin{frame}
+    \frametitle{Costs of Accidents}
+
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Direct Costs:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Cost of treatment
+                    \item Cost of doctor/hospital
+                    \item Cost of medications
+                    \item Cost of medical equipment
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Indirect Costs:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Schedule delays
+                    \item Lower morale
+                    \item Increased absenteeism
+                    \item Poor customer relations
+                    \item Re-training
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Benefits of Safety and Health Programs}
+
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Improvement in product, process, and service quality
+                \item Better morale
+                \item Improved recruiting and retention
+                \item More favorable image and reputation
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.5\linewidth}{A cover of an OSHA publication titled Recommended Practices for Safety and Health Programs, dated October 2016 (OSHA 3885). The top portion features a grid of images depicting workers in various industries, including construction, healthcare, manufacturing, electrical work, and office settings. Interspersed within the image grid are blue informational blocks showing white icons for Management Leadership, Worker Participation, and Find and Fix Hazards. The lower portion has a gray background displaying the title in bold blue font alongside the official OSHA logo.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{RecommendedPractices}
+
+            \vspace{0.5em}
+            \centering
+            {\footnotesize \href{https://www.osha.gov/sites/default/files/publications/OSHA3885.pdf}{OSHA Recommended Practices for Safety and Health Programs}\par}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Core Elements of Safety and Health Programs}
+
+\begin{frame}
+    \frametitle{Core Elements of Safety and Health Programs}
+
+    There are 7 core elements to an effective safety and health program:
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{enumerate}[<+- | alert@+>]
+                \item<1->[1.] Management Leadership
+                \item<2->[2.] Worker Participation
+                \item<3->[3.] Hazard Identification and Assessment
+                \item<4->[4.] Hazard Prevention and Control
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{enumerate}[<+- | alert@+>]
+                \item<5->[5.] Education and Training
+                \item<6->[6.] Program Evaluation and Improvement
+                \item<7->[7.] Coordination and Communication on Multiemployer Worksites
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Management Leadership}
+
+\begin{frame}
+    \frametitle{Management Leadership}
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Owners, CEOs, managers, supervisors at all levels
+                \item Provide the leadership, vision, resources needed implement an effective safety and health program
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram showing seven core elements of safety management, with Management Leadership highlighted at the top stating that it creates a culture of safety, facilitates trust, and reinforces the core elements. The other surrounding elements include Worker Participation, Hazard Identification and Assessment, Hazard Prevention and Control, Education and Training, Program Evaluation and Improvement, and Multiemployer Worksites.}{\textbf{Image:} U.S. Occupational Safety and Health Administration}{ManagementLeadership}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Leadership Action Items (1 of 4)}
+
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Action Item 1}
+                Communicate your commitment to Safety and Health Programs
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{How to accomplish it:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Establish a written safety and health policy signed by top management
+                    \item Communicate the policy to workers, contractors, unions, suppliers, visitors, etc.
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Management Leadership (2 of 4)}
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Action Item 2}
+                Define program goals and expectations
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{How to accomplish it:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Establish realistic, attainable, and measurable goals that demonstrate progress toward improving safety and health
+                    \item Develop safety and health plans
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Management Leadership (3 of 4)}
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Action Item 3}
+                Allocate resources
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{How to accomplish it:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Integrate safety and health into planning and budgeting
+                    \item Allow time in workers' schedule for participation
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Management Leadership (4 of 4)}
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Action Item 4}
+                Expect performance
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{How to accomplish it:}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Define and communicate responsibilities and authorities for accountability
+                    \item Set an example for workers by following the same procedures
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Worker Participation}
+
+\begin{frame}
+    \frametitle{Worker Participation}
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Workers gain the most from a successful program
+                \item Also lose the most if it fails...
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Worker Participation at the top, stating that it results in better design, implementation, and evaluation. Surrounding segments represent the remaining core safety management elements: Hazard Identification and Assessment, Hazard Prevention and Control, Education and Training, Program Evaluation and Improvement, Multiemployer Worksites, and Management Leadership.}{\textbf{Image:} U.S. Occupational Safety and Health Administration}{WorkerParticipation}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Participating in Safety Programs}
+
+    All workers, including contractors, subcontractors, temp workers:
+    \begin{itemize}[<+- | alert@+>]
+        \item Have opportunities to participate throughout program design and implementation
+        \item Have access to information they need to participate effectively in the program
+        \item Are encouraged to participate in the program
+        \item Feel comfortable reporting safety and health concerns
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Safety Incentives (1 of 2)}
+    How many of your workplaces have these as part of your safety and health plan?
+    \begin{itemize}[<+- | alert@+>]
+        \item Incentive programs that tie evaluation, compensation, or rewards to low injury/illness rates
+        \item Point systems that penalize for reporting injuries, illnesses, or other safety or health concerns
+        \item Mandatory drug testing after reporting injuries?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Safety Incentives (2 of 2)}
+    All of those are pretty terrible ideas.
+    \begin{itemize}[<+- | alert@+>]
+        \item When compensation is tied to reporting it \textbf{discourages} reporting and does nothing for safety
+        \item Likewise for drug testing 
+        \item Effective safety and health programs recognize positive safety activities
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Worker Action Item 1}
+    
+    Encourage workers to report safety and health concerns
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Establish a process for reporting
+                    \item Respond promptly
+                    \item Consider anonymity
+                    \item Empower workers to suspend or shut down an activity they feel is unsafe
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Involve workers in finding solutions
+                    \item Emphasize management will only use the information for improvement -- \textbf{NOT} retaliation
+                \end{itemize}
+            \end{column}
+        \end{columns}    
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Worker Action Item 2}
+
+    Encourage workers to participate in the program
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Acknowledge and provide positive reinforcement to workers who actively participate
+            \item Maintain an open door policy that invites workers to talk to management about safety and health
+            \item Encourage workers to make suggestions about safety and health
+            \item Encourage contractors and temps to participate
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Worker Action Item 3}
+
+    Involve workers in all aspects of the program
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Developing the program
+                    \item Reporting hazards and developing solutions
+                    \item Analyze hazards in each step of each job
+                    \item Define/document safe work practices
+                    \item Conducting site inspections
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}                    
+                    \item Developing/revising safety procedures
+                    \item Participating in incident investigations
+                    \item Serving as trainers for coworkers and new hires
+                    \item Developing, implementing, evaluating training programs
+                \end{itemize}
+            \end{column}
+        \end{columns}    
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Worker Action Item 4}
+
+    Give workers access to safety and health information
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Safety Data Sheets
+                    \item Injury/illness data
+                    \item Results of environmental exposure monitoring
+                    \item Chemical/equipment manufacturer safety information
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Workplace inspection reports
+                    \item Incident investigation reports
+                    \item Workplace job hazard analyses
+                \end{itemize}
+            \end{column}
+        \end{columns}    
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Worker Action Item 5}
+
+    Remove barriers to participation
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Ensure workers from all levels can participate regardless of:
+                    \begin{itemize}
+                        \item Skill level
+                        \item Education
+                        \item Language
+                    \end{itemize}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Ensure other policies/programs do not discourage participation
+                    \item Authorize resources to encourage participation (e.g. meetings during working hours)
+                \end{itemize}
+            \end{column}
+        \end{columns}    
+    \end{block}
+\end{frame}
+
+\subsection{Hazard Identification and Assessment}
+
+\begin{frame}
+	\frametitle{Hazard Identification and Assessment}
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Failure to identify hazards is one of the common ``root causes"
+                \item Leads to opportunities to improve program performance
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Hazard Identification and Assessment at the top, stating that it identifies and documents all known and suspected hazards. Surrounding segments represent the remaining core safety management elements: Hazard Prevention and Control, Education and Training, Program Evaluation and Improvement, Multiemployer Worksites, Management Leadership, and Worker Participation.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{HazardIdentification}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 1}
+    
+    Collect existing information about workplace hazards
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Collect, organize, review hazard information
+            \begin{itemize}
+                \item What types are present
+                \item Which workers may be exposed
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Sources of Information}
+    
+    \begin{columns}[t]
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Inside Sources}
+                \begin{itemize}
+                    \item Equipment operating manuals
+                    \item Safety data sheets
+                    \item Inspection reports from insurance, government, consultants
+                    \item Previous injury/illness logs
+                    \item Results of medical reports
+                    \item Input from workers
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \begin{block}{Outside Sources}
+                \begin{itemize}
+                    \item Existing safety and health programs
+                    \item OSHA websites
+                    \item Trade associations
+                    \item Safety and health consultants
+                \end{itemize}
+            \end{block}
+        \end{column}        
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{OSHA Hazard Identification Training Tool}
+
+    \shadowpic[]{0.75\linewidth}{A webpage screenshot of OSHA's Hazard Identification Training Tool showing introductory text on the left and a interactive 3D town graphic on the right with selectable scenario options for Construction, Manufacturing, Emergency Room, and OSHA Visual Inspection Training.}{\href{https://www.osha.gov/hazfinder/}{OSHA Hazard Identification Training Tool}}{HazardIdentificationTrainingTool}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 2 (1 of 2)}
+    
+    Inspect the workplace
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Conduct regular inspections
+                    \begin{itemize}
+                        \item Observe workflow
+                        \item Inspect equipment/materials
+                        \item Talk with workers
+                    \end{itemize}
+                    \item Document inspection
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                    \begin{itemize}[<+- | alert@+>]
+                        \item Include ancillary activities in inspections
+                        \begin{itemize}
+                            \item Facilities and maintenance
+                            \item Purchasing and office
+                            \item Contractor and temp activities
+                        \end{itemize}
+                    \end{itemize}
+            \end{column}        
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 2 (2 of 2)}
+    
+    Inspect the workplace
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Use checklists to highlight common hazards
+            \item Make sure to conduct a hazard review \textbf{BEFORE implementing changes}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 3 (1 of 2)}
+
+    Conduct incident investigations
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Develop a procedure so investigation can start immediately after incident
+                    \begin{itemize}
+                        \item Who will be involved
+                        \item Lines of communication
+                        \item Material, equipment, supplies needed
+                        \item Reporting forms/templates
+                    \end{itemize}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Investigation team should include management \textbf{AND workers}
+                    \item Train teams in investigation techniques, remaining objective, open mindset
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}    
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 3 (2 of 2)}
+
+    Conduct incident investigations
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}
+            \item Investigate close calls/near misses
+            \item Caused by the same conditions that cause injuries/illnesses
+            \item Signal that hazards have been missed/new hazards are present
+            \item Make sure procedures encourage reporting
+        \end{itemize}
+    \end{block}    
+\end{frame}
+
+\begin{frame}
+	\frametitle{Responding to an Incident}
+
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Prevent additional incidents
+                    \item Provide first-aid
+                    \item Report incident to authorities
+                    \item Interview witnesses
+                    \item Preserve the scene
+                    \item Collect physical evidence
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}
+                    \item Assemble all evidence
+                    \item Document findings and recommendations
+                    \item Develop corrective action plan
+                    \item Communicate the results to affected workers and supervisors for training
+                \end{itemize}
+            \end{column}
+        \end{columns} 
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 4}
+
+    Identify hazards associated with emergency and non-routine situations
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Fires/explosions
+            \item Hazardous material spills
+            \item Startups after equipment shutdowns
+            \item Infrequent maintenance activities
+            \item Natural disasters
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Identification Action Item 5}
+
+    Characterize the nature of identified hazards, determine the controls to be implemented, and prioritize the hazards for control
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Evaluate each hazard
+                    \begin{itemize}
+                        \item Severity
+                        \item Exposure
+                        \item Avoidance
+                    \end{itemize}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Prioritize hazards according to risk
+                    \item Use interim measures to protect workers until permanent solutions can be implemented
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\subsection{Hazard Prevention and Control}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control}
+
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Prevent injuries, illnesses, incidents
+                \item Help provide workers safe and healthy working conditions
+                \item Used to prevent/control hazards from the previous assessment
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Hazard Prevention and Control at the top, stating that it prevents injuries using hierarchy of controls including engineering, work practices, administrative, and PPE. Surrounding segments represent the remaining core safety management elements: Education and Training, Program Evaluation and Improvement, Multiemployer Worksites, Management Leadership, Worker Participation, and Hazard Identification and Assessment.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{HazardPreventionAndControl}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 1}
+
+    Identify control options
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Review existing sources:
+                    \begin{itemize}
+                        \item Manufacturer literature
+                        \item OSHA standards
+                        \item Industry standards
+                        \item NIOSH publications
+                        \item Engineering reports
+                    \end{itemize}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Investigate control measures in other workplaces
+                    \item Get input from workers
+                    \item Consult with safety and health experts for complex hazards
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 2}
+
+    Select controls
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Plan to eliminate or control all serious hazards
+                    \item Use interim controls where necessary
+                    \item Select controls based on the hierarchy of controls
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Use a combination of controls when no single method fully protects workers
+                    \item Consider how controls may impact training needs
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 3}
+
+    Develop \emph{and update} a hazard control plan
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item List hazards in order of priority
+                    \item Assign responsibility to a specific person with power to implement controls
+                    \item Establish target date
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Plan how to track progress
+                    \item Plan how you will verify effectiveness
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 4}
+
+    Select controls to protect workers during non-routine operations and emergencies
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Develop procedures to control non-routine hazards
+                    \item Develop procedures to control emergency hazards
+                    \item Procure any equipment to control emergency hazards
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Assign responsibility for implementing emergency plan
+                    \item Conduct emergency drills
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 5}
+
+    Implement selected controls in the workplace
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Implement according to priority
+            \item ``Worst-first"
+            \item Quick fixes -- housekeeping, trip hazards, lighting
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Hazard Prevention and Control Action Item 6}
+
+    Follow up to confirm that controls are effective
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Conduct regular inspections to confirm controls are operating
+            \item Confirm work practices, administrative controls, and PPE policies are being followed
+            \item Conduct PM
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Hazard Control Follow-up Questions}
+
+    \begin{itemize}[<+- | alert@+>]
+        \item Have all controls been implemented on schedule?
+        \item Have engineering controls been properly installed and tested?
+        \item Have workers been adequately trained so they understand the controls?
+        \item Are controls being used correctly and consistently?
+    \end{itemize}
+\end{frame}
+
+\subsection{Education and Training}
+
+\begin{frame}
+	\frametitle{Education and Training}
+
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            Employers, managers, supervisors, workers:
+            \begin{itemize}[<+- | alert@+>]
+                \item Have the knowledge and skills needed to work safely and avoid creating hazards
+                \item Demonstrate awareness and understanding of hazards
+                \item Receive special training when work involves unique hazards
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Education and Training at the top, stating that it ensures all workers understand safe work practices, are familiar with hazards, and know how to participate. Surrounding segments represent the remaining core safety management elements: Program Evaluation and Improvement, Multiemployer Worksites, Management Leadership, Worker Participation, Hazard Identification and Assessment, and Hazard Prevention and Control.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{EducationAndTraining}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Program Evaluation and Improvement}
+
+\begin{frame}
+	\frametitle{Program Evaluation and Improvement}
+
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            Employers, managers, supervisors, workers:
+            \begin{itemize}[<+- | alert@+>]
+                \item Have the knowledge and skills needed to work safely and avoid creating hazards
+                \item Demonstrate awareness and understanding of hazards
+                \item Receive special training when work involves unique hazards
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Program Evaluation and Improvement at the top, stating that it assesses program effectiveness and modifications needed. Surrounding segments represent the remaining core safety management elements: Multiemployer Worksites, Management Leadership, Worker Participation, Hazard Identification and Assessment, Hazard Prevention and Control, and Education and Training.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{ProgramEvaluation}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Program Evaluation Action Item 1}
+
+    Verify the program is implemented and operating
+
+    \begin{block}{How to accomplish it:}
+        \begin{itemize}[<+- | alert@+>]
+            \item Verify the core elements of the program are fully met and key processes are in place and implemented
+            \item Are controls being used correctly and consistently?
+            \item Verify:
+                \begin{itemize}[<+- | alert@+>]
+                    \item Injuries are being reported
+                    \item Inspections are conducted
+                    \item Progress is being tracked
+                \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Program Evaluation Action Item 2}
+
+    Correct program deficiencies and identify opportunities to improve
+
+    \begin{block}{How to accomplish it:}
+        \vspace{-1.5em}
+        \begin{columns}[t]
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Seek input
+                        \begin{itemize}
+                            \item Managers
+                            \item Workers
+                            \item Supervisors
+                            \item Other stakeholders
+                        \end{itemize}
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.48\linewidth}
+                \begin{itemize}[<+- | alert@+>]
+                    \item Are the metrics/goals still relevant?
+                    \item How can we change them to be more effective?
+                \end{itemize}
+            \end{column}
+        \end{columns}
+    \end{block}
+\end{frame}
+
+\subsection{Multiemployer Worksites}
+
+\begin{frame}
+	\frametitle{Multiemployer Worksites}
+    \begin{columns}
+        \begin{column}{0.48\linewidth}
+            \begin{itemize}[<+- | alert@+>]
+                \item Multiemployer site = contractors that don't work for you
+                \item A good safety program involves \textbf{everyone}
+                \item All contractors/temps/\textbf{everyone should be involved in all previous steps}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.48\linewidth}
+            \shadowpic[]{0.875\linewidth}{A circular diagram highlighting Multiemployer Worksites at the top, stating that it ensures communication and cooperation to protect all workers onsite. Surrounding segments represent the remaining core safety management elements: Management Leadership, Worker Participation, Hazard Identification and Assessment, Hazard Prevention and Control, Education and Training, and Program Evaluation and Improvement.}{\textbf{Image:} U.S. Occupational Safety and Health Administration (OSHA)}{MultiemployerWorksites}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\section{Methods to Prevent/Control Hazards}
+
+\begin{frame}
+    \frametitle{Methods to Prevent/Control Hazards}
+    \centering{{\Huge \textbf{\textcolor{BakerADARed}{INVOLVE WORKERS!}}}}\\
+    \vspace{3em}
+    \begin{itemize}
+        \item Understand the conditions that create the hazard
+        \item Insights into how hazards can be controlled
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Hierarchy of Controls}
+    \begin{figure}
+        \centering
+        \resizebox{0.875\linewidth}{!}{
+            \input{../assets/diagrams/HierarchyOfControls.tex}
+        }
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Points to Remember}
+    \begin{itemize}
+        \item Hazard control plan
+        \item Remember to include emergencies/non-routine activities
+        \item Continuously evaluate effectiveness of controls
+        \item Continuously evaluate new technologies
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+    \centering
+    {\Huge \textbf{\textcolor{BakerADARed}{Questions?}}}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Copyright Notice}
+    
+    {\footnotesize
+    \PresTitle \textcopyright 2026 by Brad Peirson is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0). To view a copy of the official license, visit \href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{https://creativecommons.org/licenses/by-nc-sa/4.0/}.
+
+    \vspace{0.5em}
+
+    \textbf{Exceptions and Exclusions}
+
+    \begin{itemize}
+        \item[Baker College Branding \& Trademarks:]All Baker College logos, trademarks, wordmarks, seals, slide design templates, and proprietary branding elements contained in these materials are \textbf{EXCLUDED} from the CC BY-NC-SA 4.0 license. All rights are reserved by Baker College. Express written permission from Baker College is required for any use, copying, or redistribution of these elements.
+        \item[Third-Party Media \& Content:] Any third-party images, graphics, diagrams, or external media incorporated in these materials are included under their respective original licenses or permissions and are individually attributed at their point of use. 
+        \item[Original Author Content:] All unattributed figures, diagrams, text, code snippets, and media are original works created by the author and are licensed under the CC BY-NC-SA 4.0 license.
+    \end{itemize}
+    \par}
+\end{frame}
+
+\end{document}
+
+% \begin{frame}
+%     \frametitle{Test Todo}
+
+%     % Usage: \tikztodo[width]{height}{description/notes}
+%     \tikztodo[0.7\textwidth]{4cm}{Convert block diagram of feedback loop}
+% \end{frame}

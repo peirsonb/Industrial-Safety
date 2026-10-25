@@ -1,0 +1,69 @@
+\begin{tikzpicture}[font=\sffamily\bfseries]
+
+    % Total segments
+    \pgfmathsetmacro{\N}{7}
+    \pgfmathsetmacro{\angleStep}{360 / \N}
+    
+    % Radii definitions
+    \def\rInner{0}
+    \def\rMid{3.2}
+    \def\rOuter{4.8}
+    \def\rHighOuter{5.3} % Radius when highlighted (popped out)
+
+    % Data definitions using standard TikZ/xcolor names:
+    % {Index / Title / Description / Standard Base Color}
+    \def\segmentData{
+        1/{MANAGEMENT\\LEADERSHIP}/{Creates a culture of safety, facilitates trust, and reinforces the core elements.}/purple,
+        2/{WORKER\\PARTICIPATION}/{Results in better design, implementation and evaluation.}/blue,
+        3/{HAZARD IDENTIFICATION\\AND ASSESSMENT}/{Identifies and documents all known and suspected hazards.}/orange,
+        4/{HAZARD PREVENTION\\AND CONTROL}/{Prevents injuries using hierarchy of controls: engineering, work practices, administrative, PPE.}/green,
+        5/{EDUCATION AND\\TRAINING}/{Ensures all workers understand safe work practices, are familiar with hazards, and know how to participate.}/violet,
+        6/{PROGRAM EVALUATION\\AND IMPROVEMENT}/{Assesses program effectiveness and modifications needed.}/teal,
+        7/{MULTIEMPLOYER\\WORKSITES}/{Ensures communication and cooperation to protect all workers onsite.}/red
+    }
+
+    \foreach \i / \title / \desc / \baseColor in \segmentData {
+        % Calculate angles (1st segment centered at top, i.e., 90 deg)
+        \pgfmathsetmacro{\startAngle}{90 - (\i - 1)*\angleStep + \angleStep/2}
+        \pgfmathsetmacro{\endAngle}{90 - \i*\angleStep + \angleStep/2}
+        \pgfmathsetmacro{\midAngle}{(\startAngle + \endAngle)/2}
+
+        % Check if current segment is highlighted
+        \pgfmathsetmacro{\isHighlighted}{equal(\i, #1)}
+
+        \pgfmathparse{\isHighlighted ? "\rHighOuter" : "\rOuter"}
+        \edef\currentOuterR{\pgfmathresult}
+        
+        \pgfmathparse{\isHighlighted ? 100 : 30}
+        \edef\colorOpacity{\pgfmathresult}
+
+        % --- 1. Draw Inner Sector (Description) ---
+        \fill[\baseColor!\colorOpacity!white, draw=white, linewidth=1.5pt]
+            (0,0) -- (\startAngle:\rMid) arc (\startAngle:\endAngle:\rMid) -- cycle;
+
+        % --- 2. Draw Outer Sector (Title) ---
+        \fill[\baseColor!\colorOpacity!black!80, draw=white, linewidth=1.5pt]
+            (\startAngle:\rMid) -- (\startAngle:\currentOuterR) 
+            arc (\startAngle:\endAngle:\currentOuterR) 
+            -- (\endAngle:\rMid) arc (\endAngle:\startAngle:\rMid) -- cycle;
+
+        % --- 3. Place Outer Title Text ---
+        \node[
+            text width=2.2cm, 
+            align=center, 
+            text=white, 
+            font=\small\sffamily\bfseries,
+            rotate={\midAngle - 90 + (\midAngle < -90 ? 180 : 0)}
+        ] at ({\midAngle}:{(\rMid + \currentOuterR)/2}) {\title};
+
+        % --- 4. Place Inner Description Text ---
+        \node[
+            text width=2.4cm, 
+            align=center, 
+            text={\isHighlighted ? white : black!80}, 
+            font=\tiny\sffamily,
+            rotate={\midAngle - 90 + (\midAngle < -90 ? 180 : 0)}
+        ] at ({\midAngle}:{\rMid * 0.55}) {\desc};
+    }
+
+\end{tikzpicture}

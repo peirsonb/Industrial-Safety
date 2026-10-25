@@ -1,0 +1,123 @@
+\begin{tikzpicture}
+    \begin{axis}[
+        xbar stacked,
+        width=14cm,
+        height=10cm,
+        title={\textbf{\Large Fatal occupational injuries by major event, 2024}},
+        xlabel={Number of fatal work injuries},
+        xmin=0, xmax=2500,
+        xtick={0, 500, 1000, 1500, 2000, 2500},
+        ytick=data,
+        yticklabels={
+            {Fires and explosions},
+            {Exposure to harmful substances\\or environments},
+            {Violence and other injuries by\\persons or animals},
+            {Contact with objects and\\equipment},
+            {Falls, slips, trips},
+            {Transportation incidents}
+        },
+        yticklabel style={
+            % text width=5.5cm, 
+            align=right, 
+            font=\small
+            },
+        nodes near coords,
+        nodes near coords style={font=\small, color=BakerBlack},
+        bar width=20pt,
+        enlarge y limits=0.15,
+        legend style={at={(0.5,-0.15)}, anchor=north, legend columns=-1, draw=none},
+        axis lines*=left,
+        %x line yshift=-5pt,
+    ]
+
+        % Primary Sub-category (Darker Blue)
+        \addplot[fill=HoneyYellow, draw=BakerBlack,] coordinates {
+            (0,1)    % Fires and explosions (no sub-category)
+            (0,2)    % Exposure to harmful substances
+            (470,3)  % Homicides
+            (0,4)    % Contact with objects
+            (666,5)  % Falls to lower level
+            (1146,6) % Roadway incidents
+        };
+
+        % Remaining Category Count (Lighter Blue)
+        \addplot[fill=LakeBlue, draw=BakerBlack,] coordinates {
+            (93,1)   % Fires and explosions (total = 93)
+            (687,2)  % Exposure (total = 687)
+            (263,3)  % Violence remaining (733 - 470 = 263)
+            (756,4)  % Contact with objects (total = 756)
+            (178,5)  % Falls remaining (844 - 666 = 178)
+            (791,6)  % Transportation remaining (1937 - 1146 = 791)
+        };
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(1937,6)
+        {\small{1,937}};
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(844,5)
+        {\small{844}};
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(756,4)
+        {\small{756}};
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(733,3)
+        {\small{733}};
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(687,2)
+        {\small{687}};
+
+        \node[
+            anchor=west,
+            align=left,
+            text=BakerBlack,
+        ]
+        at(93,1)
+        {\small{93}};
+
+            % Draw annotations on top after the axis finishes rendering:
+        \pgfplotsset{
+            after end axis/.code={
+                \draw[UpNorthGreen, *-]
+                    (axis cs:1000, 5.875) to[out=330,in=180] (axis cs:1250, 5.25)
+                    node[anchor=west, text=BakerBlack] {{\small Roadway incidents}};
+
+                \draw[UpNorthGreen, *-]
+                    (axis cs:600, 4.875) to[out=330,in=180] (axis cs:1250, 4.25)
+                    node[anchor=west, text=BakerBlack] {{\small Falls to lower level}};
+
+                \draw[UpNorthGreen, *-]
+                    (axis cs:375, 2.875) to[out=330,in=180] (axis cs:1250, 2.25)
+                    node[anchor=west, text=BakerBlack] {{\small Homicide}};
+                
+                % Total box annotation
+                \node[draw=BakerBlack, text=BakerBlack, inner sep=5pt, font=\small] at (axis cs:2000,1) {Total = 5,070};
+            }
+        }
+
+    \end{axis}
+
+\end{tikzpicture}

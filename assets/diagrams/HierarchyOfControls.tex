@@ -1,0 +1,305 @@
+\begin{circuitikz}[
+        american, 
+        >={Latex[length=5mm, width=2mm]},
+        alt={}
+    ]
+
+    \pgfmathsetmacro{\baseSize}{14}  % Base size in cm
+    \pgfmathsetmacro{\step}{2.5}    % Amount to decrease each step
+    \pgfmathsetmacro{\halfStep}{\step / 2}    % Used to center label
+
+    \pgfmathsetmacro{\currSize}{\baseSize}
+    \node[
+        draw=white,
+        fill=LakeBlue,
+        regular polygon,
+        regular polygon sides=3,
+        shape border rotate=180,
+        minimum size=\currSize cm
+        % minimum width=8cm,
+        % minimum height=8cm
+    ](elim)
+    at (0,0)
+    {};
+
+    \draw ($(elim.north)-({0.433*\currSize},0)$) ($(elim.north)-({0.433*\currSize},{0.375*\step})$) coordinate(dec1_1);
+    \draw (dec1_1) ++(-1,0) coordinate(dec1_2);
+
+    \node[
+        text=white,
+        font=\bfseries,
+        anchor=center
+    ]
+    at ($(elim.north)-(0,{0.375 * \step})$)
+    {Elimination};
+
+    \pgfmathsetmacro{\currSize}{\baseSize - \step}
+    \node[
+        draw=white,
+        fill=UpNorthGreen,
+        regular polygon,
+        regular polygon sides=3,
+        shape border rotate=180,
+        minimum size=\currSize cm,
+        % minimum width=7cm,
+        % minimum height=7cm,
+        anchor=south
+    ](sub)
+    at (elim.south)
+    {};
+
+    \draw ($(sub.north)-({0.433*\currSize},0)$) ($(sub.north)-({0.433*\currSize},{0.375*\step})$) coordinate(dec2_1);
+
+    \node[
+        text=white,
+        font=\bfseries,
+        anchor=center
+    ]
+    at ($(sub.north)-(0,{0.375 * \step})$)
+    {Substitution};
+
+    \pgfmathsetmacro{\currSize}{\baseSize - 2 * \step}
+    \node[
+        draw=white,
+        fill=HoneyYellow,
+        regular polygon,
+        regular polygon sides=3,
+        shape border rotate=180,
+        minimum size=\currSize cm,
+        % minimum width=6cm,
+        % minimum height=6cm,
+        anchor=south
+    ](egr)
+    at (sub.south)
+    {};
+
+    \draw ($(egr.north)-({0.433*\currSize},0)$) ($(egr.north)-({0.433*\currSize},{0.375*\step})$) coordinate(dec3_1);
+
+    \node[
+        text=white,
+        font=\bfseries,
+        anchor=center,
+        align=center
+    ]
+    at ($(egr.north)-(0,{0.375 * \step})$)
+    {Engineering\\controls};
+
+    \pgfmathsetmacro{\currSize}{\baseSize - 3 * \step}
+    \node[
+        draw=white,
+        fill=orange,
+        regular polygon,
+        regular polygon sides=3,
+        shape border rotate=180,
+        minimum size=\currSize cm,
+        % minimum width=6cm,
+        % minimum height=6cm,
+        anchor=south
+    ](admin)
+    at (egr.south)
+    {};
+
+    \draw ($(admin.north)-({0.433*\currSize},0)$) ($(admin.north)-({0.433*\currSize},{0.375*\step})$) coordinate(dec4_1);
+
+    \node[
+        text=white,
+        font=\bfseries,
+        anchor=center,
+        align=center
+    ]
+    at ($(admin.north)-(0,{0.375 * \step})$)
+    {Administrative\\controls};
+
+    \pgfmathsetmacro{\currSize}{\baseSize - 4 * \step}
+    \node[
+        draw=white,
+        fill=BakerRed,
+        regular polygon,
+        regular polygon sides=3,
+        shape border rotate=180,
+        minimum size=\currSize cm,
+        % minimum width=6cm,
+        % minimum height=6cm,
+        anchor=south
+    ](ppe)
+    at (admin.south)
+    {};
+
+    \draw ($(ppe.north)-({0.433*\currSize},0)$) ($(ppe.north)-({0.433*\currSize},{0.375*\step})$) coordinate(dec5_1);
+
+    \node[
+        text=white,
+        font=\bfseries,
+        anchor=center
+    ]
+    at ($(ppe.north)-(0,{0.375 * \step})$)
+    {PPE};
+
+    %============================================================================
+    % Effectiveness gradient
+    %============================================================================
+
+    % Coordinates to place the rectangle that will get the gradient
+    \coordinate(gradRefTop) at ($(elim.north)+({0.433*\baseSize},0)+(1,0)$);    % Spaced off the top corner of Elimination
+    \draw (gradRefTop) (gradRefTop |- ppe.south) coordinate(gradRefBot);        % Defined as vertical from the upper reference
+
+    % Gradient fill from Baker Red to Lake Blue
+    \shade[
+        top color=LakeBlue,
+        bottom color=BakerRed,
+        middle color=HoneyYellow
+    ]
+    (gradRefTop) rectangle ($(gradRefBot)+(1,0)$);
+
+    % Label nodes
+    \node[
+        text=BakerBlack,
+        anchor=south,
+        align=center
+    ]
+    at ($(gradRefTop)+(0.5,0)$)
+    {Most\\Effective};
+
+    \node[
+        text=BakerBlack,
+        anchor=north,
+        align=center
+    ]
+    at ($(gradRefBot)+(0.5,0)$)
+    {Least\\Effective};
+
+    %============================================================================
+    % Descriptions
+    %============================================================================
+
+    \draw (dec1_2) (dec1_2 |- dec2_1) coordinate(dec2_2);
+    \draw (dec1_2) ++(-0.25,0) coordinate(dec1_3);
+    \draw (dec2_2) (dec2_2 |- dec3_1) coordinate(dec3_2);
+    \draw (dec2_2) ++(-0.25,0) coordinate(dec2_3);
+    \draw (dec3_2) (dec3_2 |- dec4_1) coordinate(dec4_2);
+    \draw (dec3_2) ++(-0.25,0) coordinate(dec3_3);
+    \draw (dec4_2) (dec4_2 |- dec5_1) coordinate(dec5_2);
+    \draw (dec4_2) ++(-0.25,0) coordinate(dec4_3);
+    \draw (dec5_2) ++(-0.25,0) coordinate(dec5_3);
+
+    \draw[
+        BakerADARed,
+        thick
+    ]
+    (dec1_1)
+    -- (dec1_2);
+
+    \node[
+        text=BakerBlack,
+        anchor=east,
+        align=right,
+        text width=5cm
+    ](dec1)
+    at (dec1_3)
+    {Remove the hazard from the operation};
+
+    \draw [
+        color=BakerADARed,
+        decorate,
+	    decoration = {brace,amplitude=5pt}
+        ] 
+    (dec1.north east) 
+    --(dec1.south east);
+
+    \draw[
+        BakerADARed,
+        thick
+    ]
+    (dec2_1)
+    -- (dec2_2);
+
+    \node[
+        text=BakerBlack,
+        anchor=east,
+        align=right,
+        text width=5cm
+    ](dec2)
+    at (dec2_3)
+    {Replace the hazard};
+
+    \draw [
+        color=BakerADARed,
+        decorate,
+	    decoration = {brace,amplitude=5pt}
+        ] 
+    (dec2.north east) 
+    --(dec2.south east);
+
+    \draw[
+        BakerADARed,
+        thick
+    ]
+    (dec3_1)
+    -- (dec3_2);
+
+    \node[
+        text=BakerBlack,
+        anchor=east,
+        align=right,
+        text width=5cm
+    ](dec3)
+    at (dec3_3)
+    {Isolate people from the hazard};
+
+    \draw [
+        color=BakerADARed,
+        decorate,
+	    decoration = {brace,amplitude=5pt}
+        ] 
+    (dec3.north east) 
+    --(dec3.south east);
+
+    \draw[
+        BakerADARed,
+        thick
+    ]
+    (dec4_1)
+    -- (dec4_2);
+
+    \node[
+        text=BakerBlack,
+        anchor=east,
+        align=right,
+        text width=5cm
+    ](dec4)
+    at (dec4_3)
+    {Change the way people work};
+
+    \draw [
+        color=BakerADARed,
+        decorate,
+	    decoration = {brace,amplitude=5pt}
+        ] 
+    (dec4.north east) 
+    --(dec4.south east);
+
+    \draw[
+        BakerADARed,
+        thick
+    ]
+    (dec5_1)
+    -- (dec5_2);
+
+    \node[
+        text=BakerBlack,
+        anchor=east,
+        align=right,
+        text width=5cm
+    ](dec5)
+    at (dec5_3)
+    {Protect the worker with PPE};
+
+    \draw [
+        color=BakerADARed,
+        decorate,
+	    decoration = {brace,amplitude=5pt}
+        ] 
+    (dec5.north east) 
+    --(dec5.south east);
+
+\end{circuitikz}
